@@ -3,16 +3,17 @@
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_gmtj2"]
 [ext_resource type="Script" path="res://components/terrain_generator.gd" id="2_ue5xl"]
 [ext_resource type="FastNoiseLite" uid="uid://cwlix0li6hevf" path="res://resources/noise/height_map.tres" id="3_d7b0i"]
+[ext_resource type="Texture2D" uid="uid://dr5faagmak1ag" path="res://graphics/PlayerSprite.png" id="3_xvw2e"]
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="4_8i6pb"]
 [ext_resource type="TileSet" uid="uid://bmkmo302ulgb2" path="res://resources/tileset.tres" id="5_82cjb"]
 [ext_resource type="PackedScene" uid="uid://dmmyoxswkt77d" path="res://scenes/player.tscn" id="6_d32gl"]
-[ext_resource type="Texture2D" uid="uid://e3opu1kwb5nn" path="res://graphics/BlcharSprite.png" id="7_2680o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ius4"]
 size = Vector2(256, 256)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("terrain_generator", "render_boundary", "render_boundary_collision", "camera")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "terrain_generator", "render_boundary", "render_boundary_collision", "camera")]
 script = ExtResource("1_gmtj2")
+player = NodePath("Player")
 terrain_generator = NodePath("TerrainGenerator")
 render_boundary = NodePath("RenderBoundary")
 render_boundary_collision = NodePath("RenderBoundary/CollisionShape2D")
@@ -46,6 +47,6 @@ debug_color = Color(0, 0.595, 0.7, 0.25098)
 
 [node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_d32gl")]
 tilemap = NodePath("../Terrain")
-sprite_texture = ExtResource("7_2680o")
+sprite_texture = ExtResource("3_xvw2e")
 
 [connection signal="area_exited" from="RenderBoundary" to="." method="_onRenderBoundaryExit"]

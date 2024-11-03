@@ -27,10 +27,10 @@ var moveTo: Vector2 = Vector2i(8, 8)
 
 ## --- Stats Vars
 
-var health: int = stats.init_health
-var stamina: int = stats.init_stamina
-var armor: int = stats.init_armor
-var mana: int = stats.init_mana
+var health: int
+var stamina: int
+var armor: int
+var mana: int
 
 # Process movement lerp
 func process_movement() -> void:
@@ -72,6 +72,12 @@ func _ready() -> void:
 	# Gets the position in the tilemap
 	position = tilemap.map_to_local(tile_pos)
 	animations.speed_scale = MOVEMENT_SNAP_CURVE*4
+	
+	# Sets up the stats
+	health = stats.init_health
+	stamina = stats.init_stamina
+	armor = stats.init_armor
+	mana = stats.init_mana
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
