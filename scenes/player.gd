@@ -2,6 +2,7 @@ extends Node2D
 
 @export var tilemap: TileMapLayer
 @export var sprite_texture: Texture2D
+@export var stats: CharacterStats
 
 const MOVEMENT_MARGIN = 0.1
 # How fast the transition from one tile to another is.
@@ -14,6 +15,8 @@ const MOVEMENT_SNAP_CURVE = 0.3
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var tile_collision_checker: TileCollisionChecker = $TileCollisionChecker
 
+## --- Movement / Action vars
+
 var isMoving: bool = false
 var goBack: bool = false
 
@@ -21,6 +24,13 @@ var tile_pos: Vector2i = Vector2i(8, 8)
 var target_tile: Vector2i = Vector2i(8, 8)
 var moveFrom: Vector2 = Vector2i(8, 8)
 var moveTo: Vector2 = Vector2i(8, 8)
+
+## --- Stats Vars
+
+var health: int = stats.init_health
+var stamina: int = stats.init_stamina
+var armor: int = stats.init_armor
+var mana: int = stats.init_mana
 
 # Process movement lerp
 func process_movement() -> void:
@@ -88,8 +98,6 @@ func _onAction(direction: Vector2) -> void:
 			Vector2.LEFT:
 				sprite.frame = 3
 	
-	
-	
 	# Checks for tile collision
 	var foundCollision = tile_collision_checker.hasCollision(target_tile)
 	
@@ -105,8 +113,4 @@ func _onAction(direction: Vector2) -> void:
 		target_tile = tile_pos
 	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
 	animations.play("Hop")
-	
-	
-	
-	
 	

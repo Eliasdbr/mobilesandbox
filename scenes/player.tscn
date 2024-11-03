@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmmyoxswkt77d"]
+[gd_scene load_steps=10 format=3 uid="uid://dmmyoxswkt77d"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ib82p"]
 [ext_resource type="Script" path="res://components/swipe_movement.gd" id="2_limlt"]
+[ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="3_jufy2"]
 [ext_resource type="Script" path="res://components/tile_collision_checker.gd" id="3_lsgmh"]
 [ext_resource type="Texture2D" uid="uid://dr5faagmak1ag" path="res://graphics/PlayerSprite.png" id="4_1sysk"]
 
@@ -96,6 +97,7 @@ _data = {
 [node name="Player" type="Node2D"]
 script = ExtResource("1_ib82p")
 sprite_texture = ExtResource("4_1sysk")
+stats = ExtResource("3_jufy2")
 
 [node name="RenderNotifier" type="Area2D" parent="."]
 collision_layer = 1073741824
