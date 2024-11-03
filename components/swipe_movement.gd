@@ -40,5 +40,13 @@ func _process(_delta: float) -> void:
 			isSwiping = false
 	else:
 		isSwiping = false
-		
-	
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("action_up"):
+		onSwipe.emit(Vector2.UP)
+	if event.is_action_pressed("action_down"):
+		onSwipe.emit(Vector2.DOWN)
+	if event.is_action_pressed("action_left"):
+		onSwipe.emit(Vector2.LEFT)
+	if event.is_action_pressed("action_right"):
+		onSwipe.emit(Vector2.RIGHT)

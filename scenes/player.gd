@@ -69,7 +69,10 @@ func _process(_delta: float) -> void:
 	process_movement()
 	
 
-func _onSwipe(direction: Vector2) -> void:
+func _onAction(direction: Vector2) -> void:
+	# If its doing something, ignore input
+	if isMoving: return
+	
 	# Get the position of the next tile
 	target_tile = tile_pos + Vector2i(direction)
 	

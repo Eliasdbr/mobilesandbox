@@ -129,4 +129,4 @@ texture_filter = 1
 hframes = 4
 region_rect = Rect2(0, 0, 16, 16)
 
-[connection signal="onSwipe" from="SwipeMovement" to="." method="_onSwipe"]
+[connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]

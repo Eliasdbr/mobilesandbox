@@ -25,7 +25,7 @@ func _onRenderBoundaryExit(exitingArea: Area2D) -> void:
 	# repositions the boundary
 	render_boundary.global_position += directionFromCenter * 256
 	# loads new chunks
-	terrain_generator.loadChunksAreaAt(render_boundary.global_position, cameraViewHeight)
+	terrain_generator.loadChunksAreaAt(render_boundary.global_position, cameraViewHeight * 2)
 	# unloads the furthest chunks
 	terrain_generator.unloadFurthestChunksFrom(newPos, cameraViewHeight * 2)
 	#print("Area exited", newPos)
