@@ -16,13 +16,18 @@ func _onRenderBoundaryExit(exitingArea: Area2D) -> void:
 	# Gets a vector from the center of the current boundary area, to the point 
 	# where the player exited the area. This is to get a direction in which to
 	# generate the next chunks
-	var directionFromCenter = (newPos - render_boundary.global_position).normalized()
+	var directionFromCenter = (newPos - (render_boundary.global_position + Vector2(1,1) * 128)).normalized()
+	if abs(directionFromCenter.x) > abs(directionFromCenter.y):
+		directionFromCenter = Vector2(sign(directionFromCenter.x), 0)
+	else:
+		directionFromCenter = Vector2(0, sign(directionFromCenter).y)
 	#print("directionFromCenter: ", directionFromCenter)
-	terrain_generator.loadChunksAreaAt(newPos + directionFromCenter * cameraViewHeight / 2, cameraViewHeight * 2)
+	# repositions the boundary
+	render_boundary.global_position += directionFromCenter * 256
+	# loads new chunks
+	terrain_generator.loadChunksAreaAt(render_boundary.global_position, cameraViewHeight)
 	# unloads the furthest chunks
 	terrain_generator.unloadFurthestChunksFrom(newPos, cameraViewHeight)
-	# repositions the boundary
-	render_boundary.global_position = newPos
 	#print("Area exited", newPos)
 
 # Called when the node enters the scene tree for the first time.
@@ -32,7 +37,7 @@ func _ready() -> void:
 	cameraViewHeight = camera.get_viewport_rect().size.y / camera.zoom.y
 	
 	# Sets the correct render boundary
-	render_boundary_collision.shape.set("size", Vector2(cameraViewWidth / 2, cameraViewHeight / 2) )
+	#render_boundary_collision.shape.set("size", Vector2(cameraViewWidth / 2, cameraViewHeight / 2) )
 	
 	# Generates first chunks
 	terrain_generator.loadChunksAreaAt(Vector2.ZERO, cameraViewHeight * 2)

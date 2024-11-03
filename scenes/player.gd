@@ -16,8 +16,8 @@ const MOVEMENT_SNAP_CURVE = 0.3
 
 var isMoving: bool = false
 
-var tile_pos: Vector2i = Vector2i.ZERO
-var target_tile: Vector2i = Vector2i.ZERO
+var tile_pos: Vector2i = Vector2i(8, 8)
+var target_tile: Vector2i = Vector2i(8, 8)
 
 # Process movement lerp
 func process_movement() -> void:

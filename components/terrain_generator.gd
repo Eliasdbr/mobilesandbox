@@ -13,7 +13,8 @@ const TILE_SIZE: int = 16
 # Terrain thresholds
 @export_range(-1,1) var WATER_THRESHOLD: float = -0.1
 @export_range(-1,1) var SAND_THRESHOLD: float = -0.05
-@export_range(-1,1) var GRASS_THRESHOLD: float = 1
+@export_range(-1,1) var GRASS_THRESHOLD: float = 0.1
+@export_range(-1,1) var FOREST_THRESHOLD: float = 1
 
 @export var terrain_node: TileMapLayer
 @export var noise: FastNoiseLite
@@ -69,9 +70,12 @@ func generateChunkAt(chunkCoord: Vector2i) -> void:
 			elif noiseValue <= SAND_THRESHOLD:
 				# sand
 				terrain_data[y][x] = 5
-			else:
+			elif noiseValue <= GRASS_THRESHOLD:
 				# grass
-				terrain_data[y][x] = 1
+				terrain_data[y][x] = [1,1,2,1,1].pick_random()
+			else:
+				# forest (grass, trees)
+				terrain_data[y][x] = [1,2,3,4,1,2].pick_random()
 	
 	# Maps the terrain data into the tilemap
 	for y in range(len(terrain_data)):

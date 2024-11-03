@@ -35,7 +35,7 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_rr327")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ius4"]
-size = Vector2(128, 128)
+size = Vector2(256, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3krv"]
 size = Vector2(8, 8)
@@ -135,6 +135,7 @@ camera = NodePath("Camera2D")
 
 [node name="TerrainGenerator" type="Node" parent="." node_paths=PackedStringArray("terrain_node")]
 script = ExtResource("2_ue5xl")
+SEED = 7
 terrain_node = NodePath("../Terrain")
 noise = ExtResource("3_d7b0i")
 
@@ -154,6 +155,7 @@ collision_mask = 1073741824
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RenderBoundary"]
+position = Vector2(128, 128)
 shape = SubResource("RectangleShape2D_8ius4")
 debug_color = Color(0, 0.595, 0.7, 0.25098)
 
