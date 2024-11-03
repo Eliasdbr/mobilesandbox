@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4xrfoj2eamff"]
+[gd_scene load_steps=8 format=3 uid="uid://b4xrfoj2eamff"]
 
 [ext_resource type="Script" path="res://scenes/character.gd" id="1_2vm8d"]
 [ext_resource type="Texture2D" uid="uid://e3opu1kwb5nn" path="res://graphics/BlcharSprite.png" id="2_qc1ek"]
 [ext_resource type="Script" path="res://components/tile_collision_checker.gd" id="4_4xil6"]
+[ext_resource type="Script" path="res://components/character_collision_checker.gd" id="4_e5421"]
 
 [sub_resource type="Animation" id="Animation_n2tes"]
 resource_name = "Hop"
@@ -95,6 +96,9 @@ sprite_texture = ExtResource("2_qc1ek")
 
 [node name="TileCollisionChecker" type="Node" parent="."]
 script = ExtResource("4_4xil6")
+
+[node name="CharacterCollisionChecker" type="Node" parent="."]
+script = ExtResource("4_e5421")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

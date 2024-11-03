@@ -56,9 +56,10 @@ action_right={
 [layer_names]
 
 2d_physics/layer_1="world"
-2d_physics/layer_2="characters"
+2d_physics/layer_2="characters_hit"
 2d_physics/layer_3="items"
 2d_physics/layer_4="projectiles"
+2d_physics/layer_5="characters_hurt"
 2d_physics/layer_31="render_trigger"
 2d_physics/layer_32="render_detector"
 

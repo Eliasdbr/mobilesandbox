@@ -1,3 +1,4 @@
+class_name Character
 extends Node2D
 
 @export var tilemap: TileMapLayer
@@ -15,6 +16,8 @@ const MOVEMENT_SNAP_CURVE = 0.3
 @onready var sprite_anchor: Node2D = $SpriteAnchor
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var tile_collision_checker: TileCollisionChecker = $TileCollisionChecker
+@onready var char_collision_checker: CharacterCollisionChecker = $CharacterCollisionChecker
+@onready var world: GameWorld = $".."
 
 ## --- Movement / Action vars
 
@@ -32,6 +35,11 @@ var health: int
 var stamina: int
 var armor: int
 var mana: int
+
+## Get Hit
+func getHit(damage: int) -> void:
+	print("Character ", get_instance_id(), " got hit: ", damage)
+	
 
 # Process movement lerp
 func process_movement() -> void:
@@ -55,6 +63,9 @@ func process_movement() -> void:
 				moveFrom = moveTo
 				moveTo = newMoveTo
 			else:
+				# Updates the world's character pos
+				world.loadedCharacters.erase(tile_pos)
+				world.loadedCharacters[target_tile] = get_instance_id()
 				tile_pos = target_tile
 				position = tilemap.map_to_local(tile_pos)
 				sprite_anchor.global_position = position
@@ -69,6 +80,8 @@ func _ready() -> void:
 	
 	# Sets up the tile collision checker
 	tile_collision_checker.tilemap = tilemap
+	# Sets up the character collision checker
+	char_collision_checker.world = world
 	
 	# Gets the position in the tilemap
 	tile_pos = spawn_pos
@@ -80,7 +93,14 @@ func _ready() -> void:
 	stamina = stats.init_stamina
 	armor = stats.init_armor
 	mana = stats.init_mana
+	
+	# Add to the characters dictionary
+	world.loadedCharacters[tile_pos] = get_instance_id()
 
+## Before removing this character
+func _exit_tree() -> void:
+	# Deletes this character from the world's character dictionary
+	world.loadedCharacters.erase(tile_pos)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -108,15 +128,18 @@ func _onAction(direction: Vector2) -> void:
 				sprite.frame = 3
 	
 	# Checks for tile collision
-	var foundCollision = tile_collision_checker.hasCollision(target_tile)
+	var foundTileCollision = tile_collision_checker.hasCollision(target_tile)
+	var foundCharCollision = char_collision_checker.hasCollision(target_tile)
 	
 	# Animates the sprite movement
 	isMoving = true
 	moveFrom = tilemap.map_to_local(tile_pos)
 	moveTo = tilemap.map_to_local(target_tile)
 	var dir = (moveTo - moveFrom).normalized()
-	if foundCollision: 
+	if foundTileCollision or foundCharCollision: 
 		print("Found collision")
+		if foundCharCollision:
+			char_collision_checker.getCollidingCharacter(target_tile).getHit(1)
 		goBack = true
 		moveTo = moveTo - (dir*Tiles.GRID_SIZE/2)
 		target_tile = tile_pos

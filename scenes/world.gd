@@ -1,3 +1,4 @@
+class_name GameWorld
 extends Node2D
 
 @export var player: Node2D
@@ -8,6 +9,9 @@ extends Node2D
 
 var cameraViewHeight: float
 var cameraViewWidth: float
+
+## key: Vector2i, value: instance_id
+var loadedCharacters: Dictionary = {}
 
 func _onRenderBoundaryExit(exitingArea: Area2D) -> void:
 	#print("viewport height: ", cameraViewHeight)
