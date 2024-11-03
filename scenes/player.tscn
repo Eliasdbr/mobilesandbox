@@ -1,13 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmmyoxswkt77d"]
+[gd_scene load_steps=5 format=3 uid="uid://dmmyoxswkt77d"]
 
 [ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="1_lkudo"]
 [ext_resource type="Script" path="res://components/swipe_movement.gd" id="2_limlt"]
 [ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="3_jufy2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jxbp"]
+size = Vector2(8, 8)
 
 [node name="Player" instance=ExtResource("1_lkudo")]
 stats = ExtResource("3_jufy2")
 
 [node name="SwipeMovement" type="Node" parent="." index="3"]
 script = ExtResource("2_limlt")
+
+[node name="RenderNotifier" type="Area2D" parent="." index="4"]
+position = Vector2(0, -5)
+collision_layer = 1073741824
+collision_mask = 2147483648
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RenderNotifier" index="0"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_3jxbp")
 
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]

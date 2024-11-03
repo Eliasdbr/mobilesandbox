@@ -3,6 +3,7 @@ extends Node2D
 @export var tilemap: TileMapLayer
 @export var sprite_texture: Texture2D
 @export var stats: CharacterStats
+@export var spawn_pos: Vector2i = Vector2i(0, 0)
 
 const MOVEMENT_MARGIN = 0.1
 # How fast the transition from one tile to another is.
@@ -70,6 +71,7 @@ func _ready() -> void:
 	tile_collision_checker.tilemap = tilemap
 	
 	# Gets the position in the tilemap
+	tile_pos = spawn_pos
 	position = tilemap.map_to_local(tile_pos)
 	animations.speed_scale = MOVEMENT_SNAP_CURVE*4
 	
