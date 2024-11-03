@@ -5,7 +5,7 @@ extends Node
 @export var SEED: int = 0
 
 # Tile size, in pixels
-const TILE_SIZE: int = 16
+const TILE_SIZE: int = Tiles.GRID_SIZE
 
 # Chunk size, in squared tiles
 @export var CHUNK_SIZE: int = 16

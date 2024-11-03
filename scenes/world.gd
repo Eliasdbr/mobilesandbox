@@ -27,7 +27,7 @@ func _onRenderBoundaryExit(exitingArea: Area2D) -> void:
 	# loads new chunks
 	terrain_generator.loadChunksAreaAt(render_boundary.global_position, cameraViewHeight)
 	# unloads the furthest chunks
-	terrain_generator.unloadFurthestChunksFrom(newPos, cameraViewHeight)
+	terrain_generator.unloadFurthestChunksFrom(newPos, cameraViewHeight * 2)
 	#print("Area exited", newPos)
 
 # Called when the node enters the scene tree for the first time.

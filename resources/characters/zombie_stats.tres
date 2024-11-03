@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://ctujnf50jinb2"]
+
+[ext_resource type="Script" path="res://resources/characters/character_stats.gd" id="1_y7rfo"]
+
+[resource]
+script = ExtResource("1_y7rfo")
+max_health = 5
+init_health = 5
+max_stamina = 5
+init_stamina = 5
+max_armor = 10
+init_armor = 0
+max_mana = 0
+init_mana = 0

@@ -15,39 +15,24 @@ const MOVEMENT_SNAP_CURVE = 0.3
 @onready var tile_collision_checker: TileCollisionChecker = $TileCollisionChecker
 
 var isMoving: bool = false
-var goBack: bool = false
 
 var tile_pos: Vector2i = Vector2i(8, 8)
 var target_tile: Vector2i = Vector2i(8, 8)
-var moveFrom: Vector2 = Vector2i(8, 8)
-var moveTo: Vector2 = Vector2i(8, 8)
 
 # Process movement lerp
 func process_movement() -> void:
-	if isMoving:
-		if sprite_anchor.global_position.distance_to(moveTo) > MOVEMENT_MARGIN:
-			sprite_anchor.global_position.x = lerpf(
-				sprite_anchor.global_position.x, 
-				moveTo.x, 
-				MOVEMENT_SNAP_CURVE
-			)
-			sprite_anchor.global_position.y = lerpf(
-				sprite_anchor.global_position.y, 
-				moveTo.y, 
-				MOVEMENT_SNAP_CURVE
-			)
-		else:
-			# If has to go back, swap moveTo and moveFrom
-			if goBack:
-				goBack = false
-				var newMoveTo = moveFrom
-				moveFrom = moveTo
-				moveTo = newMoveTo
-			else:
-				tile_pos = target_tile
-				position = tilemap.map_to_local(tile_pos)
-				sprite_anchor.global_position = position
-				isMoving = false
+	if sprite_anchor.global_position.distance_to(position) > MOVEMENT_MARGIN:
+		sprite_anchor.global_position.x = lerpf(
+			sprite_anchor.global_position.x, 
+			position.x, 
+			MOVEMENT_SNAP_CURVE
+		)
+		sprite_anchor.global_position.y = lerpf(
+			sprite_anchor.global_position.y, 
+			position.y, 
+			MOVEMENT_SNAP_CURVE
+		)
+	
 
 
 # Called when the node enters the scene tree for the first time.
@@ -69,7 +54,8 @@ func _process(_delta: float) -> void:
 	process_movement()
 	
 
-func _onSwipe(direction: Vector2) -> void:
+# When the character intents to Move/Interact towards a adjacent tile
+func _onAction(direction: Vector2) -> void:
 	# Get the position of the next tile
 	target_tile = tile_pos + Vector2i(direction)
 	
@@ -85,25 +71,18 @@ func _onSwipe(direction: Vector2) -> void:
 			Vector2.LEFT:
 				sprite.frame = 3
 	
-	
-	
 	# Checks for tile collision
-	var foundCollision = tile_collision_checker.hasCollision(target_tile)
+	if tile_collision_checker.hasCollision(target_tile):
+		print("Found collision")
+		return
 	
 	# Animates the sprite movement
-	isMoving = true
-	moveFrom = tilemap.map_to_local(tile_pos)
-	moveTo = tilemap.map_to_local(target_tile)
-	var dir = (moveTo - moveFrom).normalized()
-	if foundCollision: 
-		print("Found collision")
-		goBack = true
-		moveTo = moveTo - (dir*Tiles.GRID_SIZE/2)
-		target_tile = tile_pos
-	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
+	var moveFrom = tilemap.map_to_local(tile_pos)
+	var moveTo = tilemap.map_to_local(target_tile)
+	sprite_anchor.position = Vector2(moveFrom - moveTo)
 	animations.play("Hop")
 	
-	
-	
-	
+	# If there is no collision tile ahead, move
+	tile_pos = target_tile
+	position = tilemap.map_to_local(tile_pos)
 	
