@@ -14,7 +14,8 @@ const MOVEMENT_SNAP_CURVE = 0.3
 
 @onready var sprite: Sprite2D = $SpriteAnchor/Sprite2D
 @onready var sprite_anchor: Node2D = $SpriteAnchor
-@onready var animations: AnimationPlayer = $AnimationPlayer
+@onready var anim_ch1: AnimationPlayer = $AnimationPlayer1
+@onready var anim_ch2: AnimationPlayer = $AnimationPlayer2
 @onready var tile_collision_checker: TileCollisionChecker = $TileCollisionChecker
 @onready var char_collision_checker: CharacterCollisionChecker = $CharacterCollisionChecker
 @onready var world: GameWorld = $".."
@@ -39,7 +40,7 @@ var mana: int
 ## Get Hit
 func getHit(damage: int) -> void:
 	print("Character ", get_instance_id(), " got hit: ", damage)
-	animations.play("Hurt")
+	anim_ch2.play("Hurt")
 	
 
 # Process movement lerp
@@ -87,7 +88,7 @@ func _ready() -> void:
 	# Gets the position in the tilemap
 	tile_pos = spawn_pos
 	position = tilemap.map_to_local(tile_pos)
-	animations.speed_scale = MOVEMENT_SNAP_CURVE*4
+	anim_ch1.speed_scale = MOVEMENT_SNAP_CURVE*4
 	
 	# Sets up the stats
 	health = stats.init_health
@@ -145,5 +146,5 @@ func _onAction(direction: Vector2) -> void:
 		moveTo = moveTo - (dir*Tiles.GRID_SIZE/2)
 		target_tile = tile_pos
 	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
-	animations.play("Hop")
+	anim_ch1.play("Hop")
 	
