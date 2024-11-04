@@ -39,6 +39,7 @@ var mana: int
 ## Get Hit
 func getHit(damage: int) -> void:
 	print("Character ", get_instance_id(), " got hit: ", damage)
+	animations.play("Hurt")
 	
 
 # Process movement lerp
