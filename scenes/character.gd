@@ -65,11 +65,6 @@ func process_movement() -> void:
 				moveFrom = moveTo
 				moveTo = newMoveTo
 			else:
-				# Updates the world's character pos
-				world.loadedCharacters.erase(tile_pos)
-				world.loadedCharacters[target_tile] = get_instance_id()
-				tile_pos = target_tile
-				position = tilemap.map_to_local(tile_pos)
 				sprite_anchor.global_position = position
 				isMoving = false
 
@@ -145,6 +140,13 @@ func _onAction(direction: Vector2) -> void:
 		goBack = true
 		moveTo = moveTo - (dir*Tiles.GRID_SIZE/2)
 		target_tile = tile_pos
+	else:
+		# Updates the world's character pos
+		world.loadedCharacters.erase(tile_pos)
+		world.loadedCharacters[target_tile] = get_instance_id()
+		tile_pos = target_tile
+		position = tilemap.map_to_local(tile_pos)
+		sprite_anchor.global_position = moveFrom
 	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
 	anim_ch1.play("Hop")
 	
