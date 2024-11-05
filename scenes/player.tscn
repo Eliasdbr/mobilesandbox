@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmmyoxswkt77d"]
+[gd_scene load_steps=10 format=3 uid="uid://dmmyoxswkt77d"]
 
 [ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="1_lkudo"]
 [ext_resource type="Script" path="res://components/swipe_movement.gd" id="2_limlt"]
 [ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="3_jufy2"]
-[ext_resource type="Texture2D" uid="uid://jl3svhn8k2d2" path="res://graphics/HudStats.png" id="4_n682k"]
+[ext_resource type="Texture2D" uid="uid://k2atyakfsyf0" path="res://graphics/HudStats_MP_1.png" id="4_8hkam"]
+[ext_resource type="Texture2D" uid="uid://ii8fop0v5km1" path="res://graphics/HudStats_HP_0.png" id="5_wjcya"]
+[ext_resource type="Texture2D" uid="uid://bpa0ysth0gmqo" path="res://graphics/HudStats_HP_1.png" id="6_osy4u"]
+[ext_resource type="Texture2D" uid="uid://cfns22nifyyvj" path="res://graphics/HudStats_SP_0.png" id="7_t5jno"]
+[ext_resource type="Texture2D" uid="uid://cbq6twx3hrt8c" path="res://graphics/HudStats_SP_1.png" id="8_aqn8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jxbp"]
 size = Vector2(8, 8)
@@ -27,6 +31,8 @@ shape = SubResource("RectangleShape2D_3jxbp")
 [node name="HUD" type="CanvasLayer" parent="." index="7"]
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" index="0"]
+texture_filter = 1
+texture_repeat = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -41,11 +47,97 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme_override_constants/separation = 2
+alignment = 2
 
-[node name="HPBar" type="TextureProgressBar" parent="HUD/MarginContainer/StatsContainer" index="0"]
+[node name="MP" type="HFlowContainer" parent="HUD/MarginContainer/StatsContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/v_separation = 0
+alignment = 2
+last_wrap_alignment = 1
+reverse_fill = true
+
+[node name="Heart2" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/MP" index="0"]
 texture_filter = 1
 layout_mode = 2
-fill_mode = 3
-texture_under = ExtResource("4_n682k")
+texture = ExtResource("4_8hkam")
+
+[node name="Heart3" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/MP" index="1"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_8hkam")
+
+[node name="Heart4" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/MP" index="2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_8hkam")
+
+[node name="Heart5" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/MP" index="3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_8hkam")
+
+[node name="HP" type="HFlowContainer" parent="HUD/MarginContainer/StatsContainer" index="1"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/v_separation = 0
+
+[node name="Heart" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/HP" index="0"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_wjcya")
+
+[node name="Heart2" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/HP" index="1"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_osy4u")
+
+[node name="Heart3" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/HP" index="2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_osy4u")
+
+[node name="Heart4" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/HP" index="3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_osy4u")
+
+[node name="Heart5" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/HP" index="4"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_osy4u")
+
+[node name="SP" type="VBoxContainer" parent="HUD/MarginContainer/StatsContainer" index="2"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Energy" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/SP" index="0"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("7_t5jno")
+
+[node name="Energy2" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/SP" index="1"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("7_t5jno")
+
+[node name="Energy3" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/SP" index="2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_aqn8e")
+
+[node name="Energy4" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/SP" index="3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_aqn8e")
+
+[node name="Energy5" type="TextureRect" parent="HUD/MarginContainer/StatsContainer/SP" index="4"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_aqn8e")
 
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]
