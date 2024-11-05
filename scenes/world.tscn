@@ -15,6 +15,7 @@
 size = Vector2(256, 256)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "terrain_generator", "render_boundary", "render_boundary_collision", "camera")]
+texture_filter = 1
 script = ExtResource("1_gmtj2")
 player = NodePath("Player")
 terrain_generator = NodePath("TerrainGenerator")

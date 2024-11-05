@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmmyoxswkt77d"]
+[gd_scene load_steps=6 format=3 uid="uid://dmmyoxswkt77d"]
 
 [ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="1_lkudo"]
 [ext_resource type="Script" path="res://components/swipe_movement.gd" id="2_limlt"]
 [ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="3_jufy2"]
+[ext_resource type="Texture2D" uid="uid://jl3svhn8k2d2" path="res://graphics/HudStats.png" id="4_n682k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jxbp"]
 size = Vector2(8, 8)
@@ -22,5 +23,29 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RenderNotifier" index="0"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_3jxbp")
+
+[node name="HUD" type="CanvasLayer" parent="." index="7"]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="StatsContainer" type="HBoxContainer" parent="HUD/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HPBar" type="TextureProgressBar" parent="HUD/MarginContainer/StatsContainer" index="0"]
+texture_filter = 1
+layout_mode = 2
+fill_mode = 3
+texture_under = ExtResource("4_n682k")
 
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]
