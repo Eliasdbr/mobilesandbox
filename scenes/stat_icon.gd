@@ -37,7 +37,6 @@ const types: Array[String] = [ "hp", "sp", "dp", "mp" ]
 
 func update_tex():
 	var key = "tex_%s_%d" % [types[type], value]
-	print("key: ", key)
 	texture = tex_dict[key]
 
 func _ready() -> void:
