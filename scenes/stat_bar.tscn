@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb7qdb6h3tkws"]
+
+[ext_resource type="Script" path="res://scenes/stat_bar.gd" id="1_owe6k"]
+
+[node name="StatBar" type="HFlowContainer"]
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/v_separation = 0
+alignment = 2
+last_wrap_alignment = 1
+reverse_fill = true
+script = ExtResource("1_owe6k")
+value = 1
