@@ -37,11 +37,18 @@ var stamina: int
 var armor: int
 var mana: int
 
+signal healthChanged(health: int)
+signal staminaChanged(stamina: int)
+signal armorChanged(armor: int)
+signal manaChanged(mana: int)
+
+
 ## Get Hit
 func getHit(damage: int) -> void:
 	print("Character ", get_instance_id(), " got hit: ", damage)
 	anim_ch2.play("Hurt")
-	
+	health -= damage
+	healthChanged.emit(health)
 
 # Process movement lerp
 func process_movement() -> void:

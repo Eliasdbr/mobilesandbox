@@ -65,4 +65,8 @@ layout_mode = 2
 type = 3
 value = 0
 
+[connection signal="armorChanged" from="." to="HUD/MarginContainer/StatsContainer/DPBar" method="update_value"]
+[connection signal="healthChanged" from="." to="HUD/MarginContainer/StatsContainer/HPBar" method="update_value"]
+[connection signal="manaChanged" from="." to="HUD/MarginContainer/StatsContainer/MPBar" method="update_value"]
+[connection signal="staminaChanged" from="." to="HUD/MarginContainer/StatsContainer/SPBar" method="update_value"]
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]

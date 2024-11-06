@@ -21,11 +21,15 @@ const stat_icon_scene: PackedScene = preload("res://scenes/stat_icon.tscn")
 		create_icons()
 
 ## Current stat value. Shouldn't be greater than max_value. 
-@export_range(0,20) var value: int = 5
+@export_range(0,20) var value: int = 5:
+	set(v):
+		value = v
+		update_icons()
 
 
 ## Updates the current icons
 func update_icons():
+	visible = (value < max_value and value > 0)
 	var i = 0
 	for child in get_children():
 		if value >= i*2+2:
@@ -38,6 +42,7 @@ func update_icons():
 
 ## Creates a StatIcon for each 2 points of max_value.
 func create_icons() -> void:
+	visible = (value < max_value and value > 0)
 	for i in range(max_value / 2):
 		var instance = stat_icon_scene.instantiate()
 		
@@ -51,6 +56,14 @@ func create_icons() -> void:
 			instance.value = 0
 			
 		add_child(instance)
+
+## Changes its maximum value
+func update_max_value(val: int) -> void:
+	max_value = val
+
+## Changes its value
+func update_value(val: int) -> void:
+	value = val
 
 func _ready() -> void:
 	create_icons()
