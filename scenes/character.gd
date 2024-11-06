@@ -37,6 +37,9 @@ var stamina: int
 var armor: int
 var mana: int
 
+## Stamina regeneration period in seconds per point regenerated
+var stamina_cooldown: float = 1.0
+
 signal healthChanged(health: int)
 signal staminaChanged(stamina: int)
 signal armorChanged(armor: int)
@@ -50,8 +53,14 @@ func getHit(damage: int) -> void:
 	health -= damage
 	healthChanged.emit(health)
 
+## Spend stamina
+func useEnergy(cost: int) -> void:
+	stamina -= cost
+	staminaChanged.emit(stamina)
+
 # Process movement lerp
 func process_movement() -> void:
+	## Movement
 	if isMoving:
 		if sprite_anchor.global_position.distance_to(moveTo) > MOVEMENT_MARGIN:
 			sprite_anchor.global_position.x = lerpf(
@@ -75,6 +84,16 @@ func process_movement() -> void:
 				sprite_anchor.global_position = position
 				isMoving = false
 
+## Process the stamina regeneration
+func process_stamina(delta: float) -> void:
+	if stamina >= stats.max_stamina: return
+	
+	if stamina_cooldown <= 0.0:
+		stamina += 1
+		stamina_cooldown = stats.regen_stamina
+		staminaChanged.emit(stamina)
+	else:
+		stamina_cooldown -= delta
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -97,6 +116,7 @@ func _ready() -> void:
 	stamina = stats.init_stamina
 	armor = stats.init_armor
 	mana = stats.init_mana
+	stamina_cooldown = stats.regen_stamina
 	
 	# Add to the characters dictionary
 	world.loadedCharacters[tile_pos] = get_instance_id()
@@ -107,14 +127,14 @@ func _exit_tree() -> void:
 	world.loadedCharacters.erase(tile_pos)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	process_stamina(delta)
 	process_movement()
-	
 
 # When the character intents to Move/Interact towards a adjacent tile
 func _onAction(direction: Vector2) -> void:
-	# If its doing something, ignore input
-	if isMoving: return
+	# If its doing something or is tired, ignore input
+	if isMoving or stamina <= 0: return
 	
 	# Get the position of the next tile
 	target_tile = tile_pos + Vector2i(direction)
@@ -142,8 +162,11 @@ func _onAction(direction: Vector2) -> void:
 	var dir = (moveTo - moveFrom).normalized()
 	if foundTileCollision or foundCharCollision: 
 		print("Found collision")
+		# Attack the other character
 		if foundCharCollision:
 			char_collision_checker.getCollidingCharacter(target_tile).getHit(1)
+			# Attacking costs 2 stamina
+			useEnergy(2)
 		goBack = true
 		moveTo = moveTo - (dir*Tiles.GRID_SIZE/2)
 		target_tile = tile_pos
@@ -154,6 +177,8 @@ func _onAction(direction: Vector2) -> void:
 		tile_pos = target_tile
 		position = tilemap.map_to_local(tile_pos)
 		sprite_anchor.global_position = moveFrom
+		# Moving costs 1 stamina
+		useEnergy(1)
 	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
 	anim_ch1.play("Hop")
 	

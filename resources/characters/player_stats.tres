@@ -5,6 +5,11 @@
 [resource]
 script = ExtResource("1_bk35n")
 max_health = 10
+init_health = 10
 max_stamina = 10
+init_stamina = 10
+regen_stamina = 1.0
 max_armor = 10
+init_armor = 0
 max_mana = 10
+init_mana = 0

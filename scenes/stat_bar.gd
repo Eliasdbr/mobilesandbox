@@ -2,6 +2,8 @@ extends HFlowContainer
 
 const stat_icon_scene: PackedScene = preload("res://scenes/stat_icon.tscn")
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 ## Determines which icon to show
 @export_enum(
 	"Health",
@@ -16,6 +18,7 @@ const stat_icon_scene: PackedScene = preload("res://scenes/stat_icon.tscn")
 		max_value = m_v
 		## Deletes previous icons
 		for child in get_children():
+			if child is AnimationPlayer: continue
 			child.queue_free()
 		## And starts again
 		create_icons()
@@ -26,12 +29,27 @@ const stat_icon_scene: PackedScene = preload("res://scenes/stat_icon.tscn")
 		value = v
 		update_icons()
 
+## keeps track of the previous visibility status
+var prevVisible: bool = false
+
+## Animates the visibility status
+func animateVisibility() -> void:
+	if animation_player:
+		if value >= max_value or value <= 0:
+			animation_player.play("FadeOut")
+			prevVisible = false
+		elif not prevVisible:
+			animation_player.play("FadeIn")
+			prevVisible = true
 
 ## Updates the current icons
 func update_icons():
-	visible = (value < max_value and value > 0)
+	animateVisibility()
+	
 	var i = 0
 	for child in get_children():
+		if child is AnimationPlayer: continue
+		
 		if value >= i*2+2:
 			child.value = 2
 		elif value == i*2+1:
@@ -42,7 +60,8 @@ func update_icons():
 
 ## Creates a StatIcon for each 2 points of max_value.
 func create_icons() -> void:
-	visible = (value < max_value and value > 0)
+	animateVisibility()
+	
 	for i in range(max_value / 2):
 		var instance = stat_icon_scene.instantiate()
 		
