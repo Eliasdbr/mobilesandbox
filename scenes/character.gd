@@ -91,6 +91,8 @@ func process_stamina(delta: float) -> void:
 	if stamina_cooldown <= 0.0:
 		stamina += 1
 		stamina_cooldown = stats.regen_stamina
+		#print("cooldown time: ", stats.regen_stamina)
+		
 		staminaChanged.emit(stamina)
 	else:
 		stamina_cooldown -= delta
@@ -116,6 +118,7 @@ func _ready() -> void:
 	stamina = stats.init_stamina
 	armor = stats.init_armor
 	mana = stats.init_mana
+	print("Initial stamina regen: ", stats.regen_stamina)
 	stamina_cooldown = stats.regen_stamina
 	
 	# Add to the characters dictionary
