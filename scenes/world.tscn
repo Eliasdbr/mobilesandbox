@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2i4fcsbux6jy"]
+[gd_scene load_steps=14 format=3 uid="uid://c2i4fcsbux6jy"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_gmtj2"]
 [ext_resource type="Script" path="res://components/terrain_generator.gd" id="2_ue5xl"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="8_cjg84"]
 [ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="8_rullc"]
 [ext_resource type="Script" path="res://components/ai_base.gd" id="9_mttiv"]
+[ext_resource type="PackedScene" uid="uid://cm8ev6iut28as" path="res://scenes/zombie.tscn" id="11_ebch6"]
+[ext_resource type="Resource" uid="uid://ctujnf50jinb2" path="res://resources/characters/zombie_stats.tres" id="12_k56y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ius4"]
 size = Vector2(256, 256)
@@ -60,5 +62,10 @@ spawn_pos = Vector2i(5, -5)
 
 [node name="AIBase" type="Node" parent="Blchar"]
 script = ExtResource("9_mttiv")
+
+[node name="Zombie" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("11_ebch6")]
+tilemap = NodePath("../Terrain")
+stats = ExtResource("12_k56y3")
+spawn_pos = Vector2i(-5, -5)
 
 [connection signal="area_exited" from="RenderBoundary" to="." method="_onRenderBoundaryExit"]
