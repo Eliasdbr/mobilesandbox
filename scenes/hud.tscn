@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bud4avbtmrdan"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_kk75c"]
+[ext_resource type="PackedScene" uid="uid://cb7qdb6h3tkws" path="res://scenes/stat_bar.tscn" id="1_qperh"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_kk75c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="StatsContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="HPBar" parent="MarginContainer/StatsContainer" instance=ExtResource("1_qperh")]
+layout_mode = 2
+value = 10
+
+[node name="SPBar" parent="MarginContainer/StatsContainer" instance=ExtResource("1_qperh")]
+layout_mode = 2
+type = 1
+value = 10
+
+[node name="DPBar" parent="MarginContainer/StatsContainer" instance=ExtResource("1_qperh")]
+layout_mode = 2
+type = 2
+value = 0
+
+[node name="MPBar" parent="MarginContainer/StatsContainer" instance=ExtResource("1_qperh")]
+layout_mode = 2
+type = 3
+value = 0

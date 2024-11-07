@@ -1,6 +1,8 @@
 class_name CharacterStats
 extends Resource
 
+enum Types {HP, SP, DP, MP}
+
 @export var max_health: int = 10
 @export var init_health: int = 10
 
