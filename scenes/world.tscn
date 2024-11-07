@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2i4fcsbux6jy"]
+[gd_scene load_steps=11 format=3 uid="uid://c2i4fcsbux6jy"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_gmtj2"]
 [ext_resource type="Script" path="res://components/terrain_generator.gd" id="2_ue5xl"]
@@ -7,9 +7,6 @@
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="4_8i6pb"]
 [ext_resource type="TileSet" uid="uid://bmkmo302ulgb2" path="res://resources/tileset.tres" id="5_82cjb"]
 [ext_resource type="PackedScene" uid="uid://dmmyoxswkt77d" path="res://scenes/player.tscn" id="6_d32gl"]
-[ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="8_cjg84"]
-[ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="8_rullc"]
-[ext_resource type="Script" path="res://components/ai_base.gd" id="9_mttiv"]
 [ext_resource type="PackedScene" uid="uid://cm8ev6iut28as" path="res://scenes/zombie.tscn" id="11_ebch6"]
 [ext_resource type="Resource" uid="uid://ctujnf50jinb2" path="res://resources/characters/zombie_stats.tres" id="12_k56y3"]
 
@@ -54,14 +51,6 @@ debug_color = Color(0, 0.595, 0.7, 0.25098)
 [node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_d32gl")]
 tilemap = NodePath("../Terrain")
 sprite_texture = ExtResource("3_xvw2e")
-
-[node name="Blchar" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("8_cjg84")]
-tilemap = NodePath("../Terrain")
-stats = ExtResource("8_rullc")
-spawn_pos = Vector2i(5, -5)
-
-[node name="AIBase" type="Node" parent="Blchar"]
-script = ExtResource("9_mttiv")
 
 [node name="Zombie" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("11_ebch6")]
 tilemap = NodePath("../Terrain")
