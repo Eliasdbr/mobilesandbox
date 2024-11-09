@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://d3f7dfmo7mtj0"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_rd3it"]
+
+[resource]
+script = ExtResource("1_rd3it")
+name = ""
+description = ""
+graphicId = 0
+isUsable = false
+isConsumable = false
+isStackable = true
+health = 1
+isPlaceable = false
+placeableTile = 0
+canBePlacedOn = Array[int]([0])
+onUse = Callable()

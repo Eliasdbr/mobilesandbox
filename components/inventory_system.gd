@@ -1,1 +1,80 @@
+class_name InventorySystem
 extends Node
+
+class InventorySlot:
+	var item_id: int
+	var amount: int
+
+const MAX_SLOTS: int = 9
+
+## The inventory will look like this:
+## [0][1][2]
+## [3][4][5]	The center slot will be the main slot.
+## [6][7][8]
+var inventory_slots: Array[InventorySlot] = []
+
+signal inventoryChanged(inventory: Array[InventorySlot])
+
+## Swaps the current item the character is holding with the one 
+## indicated on the parameter "index".
+## If the main slot and the selected slot share the same item_id,
+## Combine the two amounts into the main slot.
+func swapWithMainSlot(index: int) -> void:
+	# If the index is not valid, return
+	if index < 0 or index > 8: return
+	
+	# If they both share the same ID, add the amount of the selected item to
+	# the main item (unless they are not stackable!!)
+	## TODO: Check for item stackability
+	if inventory_slots[4].item_id == inventory_slots[index].item_id:
+		inventory_slots[4].amount += inventory_slots[index].amount
+		inventory_slots[index].item_id = -1
+		inventory_slots[index].amount = 0
+	
+	# If they are different item_ids, simply swap them
+	var oldMain = inventory_slots[4]	# 4 is the center slot (main)
+	inventory_slots[4] = inventory_slots[index]
+	inventory_slots[index] = oldMain
+
+
+## Asks to pick up an item. If the item can be stored, returns true.
+## Otherwise, returns false.
+func pickUp(item_id: int, amount: int) -> bool:
+	## First, search for slot with the same type of item
+	## TODO: Check for item stackability
+	for i in range(len(inventory_slots)):
+		if inventory_slots[i].item_id == item_id:
+			inventory_slots[i].amount += amount
+			return true
+	
+	## Then, search for an empty slot
+	for i in range(len(inventory_slots)):
+		if inventory_slots[i].item_id != -1:
+			inventory_slots[i].item_id = item_id
+			inventory_slots[i].amount = amount
+			return true
+	
+	## Finally, if everything fails, return false
+	return false
+
+## Drops the item in the main slot, if empty, return null.
+func drop(pos: Vector2i) -> InventorySlot:
+	if inventory_slots[4].item_id == -1: return null
+	
+	var item = inventory_slots[4]
+	inventory_slots[4].item_id = -1
+	inventory_slots[4].amount = 0
+	
+	## TODO: Place an item in the world
+	
+	return item
+
+
+## Initializes the inventory system
+func _ready() -> void:
+	## Initialize the inventory
+	for i in range(MAX_SLOTS):
+		var slot = InventorySlot.new()
+		slot.item_id = -1	# empty slot
+		slot.amount = 0		# also empty slot
+		inventory_slots.append(slot)
