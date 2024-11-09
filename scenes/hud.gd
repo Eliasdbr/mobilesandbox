@@ -21,6 +21,9 @@ func update_dp(value: int):
 func update_mp(value: int):
 	mp_bar.update_value(value)
 
+func update_inventory(inventory: Array[InventorySystem.InventorySlot]):
+	pass
+
 func _ready() -> void:
 	margin_container.size = get_viewport().size / ui_scale
 	margin_container.scale = Vector2(1,1) * ui_scale

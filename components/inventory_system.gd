@@ -35,27 +35,34 @@ func swapWithMainSlot(index: int) -> void:
 	var oldMain = inventory_slots[4]	# 4 is the center slot (main)
 	inventory_slots[4] = inventory_slots[index]
 	inventory_slots[index] = oldMain
+	
+	# Emit signal that inventory changed
+	inventoryChanged.emit(inventory_slots)
 
 
 ## Asks to pick up an item. If the item can be stored, returns true.
 ## Otherwise, returns false.
 func pickUp(item_id: int, amount: int) -> bool:
+	var canBeStored: bool = false
 	## First, search for slot with the same type of item
 	## TODO: Check for item stackability
 	for i in range(len(inventory_slots)):
 		if inventory_slots[i].item_id == item_id:
 			inventory_slots[i].amount += amount
-			return true
+			canBeStored = true
 	
 	## Then, search for an empty slot
 	for i in range(len(inventory_slots)):
 		if inventory_slots[i].item_id != -1:
 			inventory_slots[i].item_id = item_id
 			inventory_slots[i].amount = amount
-			return true
+			canBeStored = true
+	
+	# Emit signal that inventory changed
+	inventoryChanged.emit(inventory_slots)
 	
 	## Finally, if everything fails, return false
-	return false
+	return canBeStored
 
 ## Drops the item in the main slot, if empty, return null.
 func drop(pos: Vector2i) -> InventorySlot:
@@ -66,6 +73,9 @@ func drop(pos: Vector2i) -> InventorySlot:
 	inventory_slots[4].amount = 0
 	
 	## TODO: Place an item in the world
+	
+	# Emit signal that inventory changed
+	inventoryChanged.emit(inventory_slots)
 	
 	return item
 

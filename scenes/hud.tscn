@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bud4avbtmrdan"]
+[gd_scene load_steps=4 format=3 uid="uid://bud4avbtmrdan"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_kk75c"]
 [ext_resource type="PackedScene" uid="uid://cb7qdb6h3tkws" path="res://scenes/stat_bar.tscn" id="1_qperh"]
+[ext_resource type="PackedScene" uid="uid://divihjymli6de" path="res://scenes/inv_slot.tscn" id="3_3pcsf"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_kk75c")
@@ -44,3 +45,39 @@ value = 0
 layout_mode = 2
 type = 3
 value = 0
+
+[node name="InventoryContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 3
+
+[node name="InvSlot_0" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_1" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_2" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_3" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_4" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+is_selected = true
+
+[node name="InvSlot_5" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_6" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_7" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2
+
+[node name="InvSlot_8" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
+layout_mode = 2

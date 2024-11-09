@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://divihjymli6de"]
+
+[ext_resource type="Script" path="res://scenes/inv_slot.gd" id="1_cyqta"]
+[ext_resource type="Texture2D" uid="uid://l7vdorsgt2n2" path="res://graphics/ItemSet.png" id="1_kj2e7"]
+
+[node name="InvSlot_0" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_cyqta")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_kj2e7")
+centered = false
+hframes = 16
+vframes = 16
+
+[node name="AmountLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "1
+"
+horizontal_alignment = 2
+vertical_alignment = 2
