@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_rd3it")
-name = ""
-description = ""
-graphicId = 0
+name = "Wood"
+description = "Prime resource to shape this world."
+graphicId = 10
 isUsable = false
 isConsumable = false
 isStackable = true
@@ -14,4 +14,4 @@ health = 1
 isPlaceable = false
 placeableTile = 0
 canBePlacedOn = Array[int]([0])
-onUse = Callable()
+onUse = null
