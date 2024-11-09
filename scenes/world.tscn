@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2i4fcsbux6jy"]
+[gd_scene load_steps=13 format=3 uid="uid://c2i4fcsbux6jy"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_gmtj2"]
 [ext_resource type="Script" path="res://components/terrain_generator.gd" id="2_ue5xl"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="4_8i6pb"]
 [ext_resource type="TileSet" uid="uid://bmkmo302ulgb2" path="res://resources/tileset.tres" id="5_82cjb"]
 [ext_resource type="PackedScene" uid="uid://dmmyoxswkt77d" path="res://scenes/player.tscn" id="6_d32gl"]
+[ext_resource type="PackedScene" uid="uid://fgv3ly4lymfg" path="res://scenes/item_dropped.tscn" id="10_dlvht"]
 [ext_resource type="PackedScene" uid="uid://cm8ev6iut28as" path="res://scenes/zombie.tscn" id="11_ebch6"]
+[ext_resource type="Resource" uid="uid://d3f7dfmo7mtj0" path="res://resources/items/item_wood.tres" id="11_o8884"]
 [ext_resource type="Resource" uid="uid://ctujnf50jinb2" path="res://resources/characters/zombie_stats.tres" id="12_k56y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ius4"]
@@ -56,5 +58,12 @@ sprite_texture = ExtResource("3_xvw2e")
 tilemap = NodePath("../Terrain")
 stats = ExtResource("12_k56y3")
 spawn_pos = Vector2i(-5, -5)
+
+[node name="ItemDropped" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
+z_as_relative = false
+y_sort_enabled = true
+tilemap = NodePath("../Terrain")
+item = ExtResource("11_o8884")
+spawn_pos = Vector2i(0, 3)
 
 [connection signal="area_exited" from="RenderBoundary" to="." method="_onRenderBoundaryExit"]

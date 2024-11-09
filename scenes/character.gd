@@ -110,7 +110,7 @@ func _ready() -> void:
 	
 	# Gets the position in the tilemap
 	tile_pos = spawn_pos
-	position = tilemap.map_to_local(tile_pos)
+	position =  tilemap.map_to_local(tile_pos)
 	anim_ch1.speed_scale = MOVEMENT_SNAP_CURVE*4
 	
 	# Sets up the stats
