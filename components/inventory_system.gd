@@ -34,15 +34,16 @@ func getResourceFromID(id: int) -> ItemStats:
 ## If the main slot and the selected slot share the same item_id,
 ## Combine the two amounts into the main slot.
 func swapWithMainSlot(index: int) -> void:
-	# If the index is not valid, return
-	if index < 0 or index > 8: return
+	# If the index is not valid, or if its the same as the main slot, return
+	if index < 0 or index > 8 or index == 4: return
 	
 	# If they both share the same ID, add the amount of the selected item to
 	# the main item (unless they are not stackable!!)
 	# Also Check for item stackability
+	var itemRes = getResourceFromID(inventory_slots[4].item_id)
 	if (
 		inventory_slots[4].item_id == inventory_slots[index].item_id
-		and getResourceFromID(inventory_slots[4].item_id).isStackable
+		and itemRes and itemRes.isStackable
 	):
 		inventory_slots[4].amount += inventory_slots[index].amount
 		inventory_slots[index].item_id = -1
@@ -74,15 +75,19 @@ func pickUp(item_id: int, amount: int) -> bool:
 	
 	## Then, search for an empty slot
 	if not canBeStored:
-		for i in range(len(inventory_slots)):
-			if inventory_slots[i].item_id == -1:
-				inventory_slots[i].item_id = item_id
-				inventory_slots[i].amount = amount
-				canBeStored = true
-				break
-	
-	## Emit signal that inventory changed
-	#inventoryChanged.emit(inventory_slots)
+		## First, check for main slot
+		if inventory_slots[4].item_id == -1:
+			inventory_slots[4].item_id = item_id
+			inventory_slots[4].amount = amount
+			canBeStored = true
+		else:
+		## Then, check for the rest
+			for i in range(len(inventory_slots)):
+				if inventory_slots[i].item_id == -1:
+					inventory_slots[i].item_id = item_id
+					inventory_slots[i].amount = amount
+					canBeStored = true
+					break
 	
 	## Finally, if everything fails, return false
 	print("Could be stored?: ", canBeStored)

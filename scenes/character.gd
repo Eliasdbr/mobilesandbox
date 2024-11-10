@@ -14,6 +14,7 @@ const MOVEMENT_SNAP_CURVE = 0.3
 
 @onready var sprite: Sprite2D = $SpriteAnchor/Sprite2D
 @onready var sprite_anchor: Node2D = $SpriteAnchor
+@onready var item_sprite: Sprite2D = $SpriteAnchor/ItemSprite
 @onready var anim_ch1: AnimationPlayer = $AnimationPlayer1
 @onready var anim_ch2: AnimationPlayer = $AnimationPlayer2
 @onready var tile_collision_checker: TileCollisionChecker = $TileCollisionChecker
@@ -59,6 +60,7 @@ func getHit(damage: int) -> void:
 func useEnergy(cost: int) -> void:
 	stamina -= cost
 	staminaChanged.emit(stamina)
+
 
 # Process movement lerp
 func process_movement() -> void:
@@ -149,12 +151,16 @@ func _onAction(direction: Vector2) -> void:
 		match(direction):
 			Vector2.DOWN:
 				sprite.frame = 0
+				item_sprite.scale = Vector2(0.5, 0.5)
 			Vector2.UP:
 				sprite.frame = 1
+				item_sprite.scale = Vector2(-0.5, 0.5)
 			Vector2.RIGHT:
 				sprite.frame = 2
+				item_sprite.scale = Vector2(0.5, 0.5)
 			Vector2.LEFT:
 				sprite.frame = 3
+				item_sprite.scale = Vector2(-0.5, 0.5)
 	
 	# Checks for tile collision
 	var foundTileCollision = tile_collision_checker.hasCollision(target_tile)
@@ -223,7 +229,19 @@ func onPickUpDrop() -> void:
 		print("Dropping down")
 		## Attempt to drop the item in the main slot, if it has one
 		inventory_system.drop(tile_pos)
+	
+	## Update held item sprite in case of having changed
+	if inventory_system.inventory_slots[4].item_id < 0:
+		item_sprite.visible = false
+	else:
+		item_sprite.visible = true
+		item_sprite.frame = inventory_system.inventory_slots[4].item_id
 
 ## When an item from the inventory is selected
 func onItemSelected(slot_idx: int) -> void:
 	inventory_system.swapWithMainSlot(slot_idx)
+	if inventory_system.inventory_slots[4].item_id < 0:
+		item_sprite.visible = false
+	else:
+		item_sprite.visible = true
+		item_sprite.frame = inventory_system.inventory_slots[4].item_id
