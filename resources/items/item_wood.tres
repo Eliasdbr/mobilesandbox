@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_rd3it")
+item_id = 10
 name = "Wood"
 description = "Prime resource to shape this world."
 graphicId = 10

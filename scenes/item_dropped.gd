@@ -9,6 +9,8 @@ extends Node2D
 		item = i
 		update_sprite()
 
+@export var amount: int = 1
+
 @export var spawn_pos: Vector2i
 
 func update_sprite():

@@ -2,6 +2,8 @@ class_name ItemStats
 extends Resource
 
 @export_category("Info")
+## ID for the item
+@export var item_id: int = -1
 ## Name for the item
 @export var name: String = ""
 ## Description for the item

@@ -18,7 +18,9 @@ const MOVEMENT_SNAP_CURVE = 0.3
 @onready var anim_ch2: AnimationPlayer = $AnimationPlayer2
 @onready var tile_collision_checker: TileCollisionChecker = $TileCollisionChecker
 @onready var char_collision_checker: CharacterCollisionChecker = $CharacterCollisionChecker
+@onready var inventory_system: InventorySystem = $InventorySystem
 @onready var world: GameWorld = $".."
+@onready var pickup_detector: Area2D = $PickupDetector
 
 ## --- Movement / Action vars
 
@@ -185,3 +187,24 @@ func _onAction(direction: Vector2) -> void:
 	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
 	anim_ch1.play("Hop")
 	
+
+## Pickup/Drop action
+func onPickUpDrop() -> void:
+	## Can't pickup or drop an item if it's moving.
+	if isMoving: return
+	
+	## Get if an item is below the character
+	var item_areas = pickup_detector.get_overlapping_areas()
+	## If there's an item on the floor:
+	if len(item_areas) > 0:
+		var dropped_item = item_areas[0].get_parent()
+		var canPickUp = inventory_system.pickUp(dropped_item.item.item_id, dropped_item.amount)
+	## if there isn't an item on the floor:
+	else:
+		## Attempt to drop the item in the main slot, if it has one
+		inventory_system.drop(tile_pos)
+
+## Detects an item on the floor
+func _on_pickup_detector_area_entered(area: Area2D) -> void:
+	var dropped_item = area.get_parent()
+	print(dropped_item.item)
