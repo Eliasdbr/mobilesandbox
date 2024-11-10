@@ -20,7 +20,7 @@ extends CanvasLayer
 @onready var inv_slot_7: Panel = $MarginContainer/InventoryContainer/InvSlot_7
 @onready var inv_slot_8: Panel = $MarginContainer/InventoryContainer/InvSlot_8
 
-var inv_slots = [
+@onready var inv_slots = [
 	inv_slot_0,
 	inv_slot_1,
 	inv_slot_2,
@@ -47,6 +47,7 @@ func update_mp(value: int):
 
 func update_inventory(inventory: Array[InventorySystem.InventorySlot]):
 	if inv_slots[0]:
+		print("updated inventory")
 		for i in range(len(inv_slots)):
 			inv_slots[i].graphic_id = inventory[i].item_id
 			inv_slots[i].amount = inventory[i].amount
@@ -57,8 +58,13 @@ func update_inv_selected(selected_idx = 4):
 		for i in range(len(inv_slots)):
 			inv_slots[i].is_selected = selected_idx == i
 
+func set_inv_visible() -> void:
+	## TEMPORARY.
+	inventory_container.visible = not inventory_container.visible
 
 func _ready() -> void:
 	margin_container.size = get_viewport().size / ui_scale
 	margin_container.scale = Vector2(1,1) * ui_scale
-	
+	for i in range(len(inv_slots)):
+		inv_slots[i].graphic_id = -1
+		inv_slots[i].amount = 0

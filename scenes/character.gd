@@ -197,14 +197,34 @@ func onPickUpDrop() -> void:
 	var item_areas = pickup_detector.get_overlapping_areas()
 	## If there's an item on the floor:
 	if len(item_areas) > 0:
+		print("Picking up")
 		var dropped_item = item_areas[0].get_parent()
 		var canPickUp = inventory_system.pickUp(dropped_item.item.item_id, dropped_item.amount)
+		if not canPickUp:
+			## makes a copy of the held item
+			var mainItem: InventorySystem.InventorySlot = InventorySystem.InventorySlot.new()
+			mainItem.item_id = inventory_system.inventory_slots[4].item_id
+			mainItem.amount = inventory_system.inventory_slots[4].amount
+			## updates the held item with the dropped item data
+			inventory_system.inventory_slots[4].item_id = dropped_item.item.item_id
+			inventory_system.inventory_slots[4].amount = dropped_item.amount
+			## updates the dropped item data with the copy's data
+			## TODO: Check if item_id is -1
+			if mainItem.item_id > -1:
+				var itemStatPath = "res://resources/items/item_%d.tres" % mainItem.item_id
+				print("Item path: ", itemStatPath)
+				dropped_item.item = load(itemStatPath)
+				dropped_item.amount = mainItem.amount
+		else:
+			dropped_item.queue_free()
+		
 	## if there isn't an item on the floor:
 	else:
+		print("Dropping down")
 		## Attempt to drop the item in the main slot, if it has one
 		inventory_system.drop(tile_pos)
 
-## Detects an item on the floor
-func _on_pickup_detector_area_entered(area: Area2D) -> void:
-	var dropped_item = area.get_parent()
-	print(dropped_item.item)
+### Detects an item on the floor
+#func _on_pickup_detector_area_entered(area: Area2D) -> void:
+	#var dropped_item = area.get_parent()
+	#print(dropped_item.item)

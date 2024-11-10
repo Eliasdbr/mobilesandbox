@@ -7,6 +7,10 @@ class InventorySlot:
 
 const MAX_SLOTS: int = 9
 
+const dropped_item_scene: PackedScene = preload("res://scenes/item_dropped.tscn")
+
+@onready var world: Node2D = $"../.."
+
 ## The inventory will look like this:
 ## [0][1][2]
 ## [3][4][5]	The center slot will be the main slot.
@@ -43,6 +47,7 @@ func swapWithMainSlot(index: int) -> void:
 ## Asks to pick up an item. If the item can be stored, returns true.
 ## Otherwise, returns false.
 func pickUp(item_id: int, amount: int) -> bool:
+	print("Picking up ", amount, " of Item ID:", item_id)
 	var canBeStored: bool = false
 	## First, search for slot with the same type of item
 	## TODO: Check for item stackability
@@ -53,15 +58,17 @@ func pickUp(item_id: int, amount: int) -> bool:
 	
 	## Then, search for an empty slot
 	for i in range(len(inventory_slots)):
-		if inventory_slots[i].item_id != -1:
+		if inventory_slots[i].item_id == -1:
 			inventory_slots[i].item_id = item_id
 			inventory_slots[i].amount = amount
 			canBeStored = true
+			break
 	
 	# Emit signal that inventory changed
 	inventoryChanged.emit(inventory_slots)
 	
 	## Finally, if everything fails, return false
+	print("Could be stored?: ", canBeStored)
 	return canBeStored
 
 ## Drops the item in the main slot, if empty, return null.
@@ -69,10 +76,17 @@ func drop(pos: Vector2i) -> InventorySlot:
 	if inventory_slots[4].item_id == -1: return null
 	
 	var item = inventory_slots[4]
+	
+	## Place an item in the world
+	var item_instance = dropped_item_scene.instantiate()
+	var item_res: ItemStats = load("res://resources/items/item_%d.tres" % item.item_id)
+	item_instance.item = item_res
+	item_instance.amount = item.amount
+	item_instance.spawn_pos = pos
+	world.add_child(item_instance)
+	
 	inventory_slots[4].item_id = -1
 	inventory_slots[4].amount = 0
-	
-	## TODO: Place an item in the world
 	
 	# Emit signal that inventory changed
 	inventoryChanged.emit(inventory_slots)

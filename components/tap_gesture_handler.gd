@@ -23,13 +23,13 @@ signal doubleTap()
 signal longTap()
 
 func onOneTap() -> void:
-	print("Single Tap Detected!	.")
+	#print("Single Tap Detected!	.")
 	press_started = false
 	presses = 0
 	oneTap.emit()
 
 func onDoubleTap() -> void:
-	print("Double Tap Detected!	..")
+	#print("Double Tap Detected!	..")
 	doubleTap.emit()
 
 func onLongTap() -> void:
@@ -39,11 +39,11 @@ func onLongTap() -> void:
 		return
 	
 	presses = 1
-	print("Long Tap Detected!	-")
+	#print("Long Tap Detected!	-")
 	longTap.emit()
 
 func onSwipeDetected():
-	print("Swipe Detected!		>")
+	#print("Swipe Detected!		>")
 	second_press_timer.stop()
 	long_press_timer.stop()
 

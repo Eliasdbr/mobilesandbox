@@ -36,3 +36,5 @@ shape = SubResource("RectangleShape2D_3jxbp")
 [connection signal="staminaChanged" from="." to="HUD" method="update_sp"]
 [connection signal="inventoryChanged" from="InventorySystem" to="HUD" method="update_inventory"]
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]
+[connection signal="doubleTap" from="TapGestureHandler" to="." method="onPickUpDrop"]
+[connection signal="longTap" from="TapGestureHandler" to="HUD" method="set_inv_visible"]
