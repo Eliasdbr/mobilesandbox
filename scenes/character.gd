@@ -1,6 +1,13 @@
 class_name Character
 extends Node2D
 
+enum ActionModes {
+	DEFAULT,
+	UI,
+	SHOOT,
+	PLACE
+}
+
 @export var tilemap: TileMapLayer
 @export var sprite_texture: Texture2D
 @export var stats: CharacterStats
@@ -32,6 +39,8 @@ var tile_pos: Vector2i = Vector2i(8, 8)
 var target_tile: Vector2i = Vector2i(8, 8)
 var moveFrom: Vector2 = Vector2i(8, 8)
 var moveTo: Vector2 = Vector2i(8, 8)
+
+var actionMode: int = ActionModes.DEFAULT
 
 ## --- Stats Vars
 
@@ -141,7 +150,7 @@ func _process(delta: float) -> void:
 # When the character intents to Move/Interact towards a adjacent tile
 func _onAction(direction: Vector2) -> void:
 	# If its doing something or is tired, ignore input
-	if isMoving or stamina <= 0: return
+	if isMoving or stamina <= 0 or actionMode != ActionModes.DEFAULT: return
 	
 	# Get the position of the next tile
 	target_tile = tile_pos + Vector2i(direction)
@@ -245,3 +254,7 @@ func onItemSelected(slot_idx: int) -> void:
 	else:
 		item_sprite.visible = true
 		item_sprite.frame = inventory_system.inventory_slots[4].item_id
+
+## When the inventory is open
+func onInventoryOpen(isOpen: bool) -> void:
+	actionMode = ActionModes.UI if isOpen else ActionModes.DEFAULT
