@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://d3f7dfmo7mtj0"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_vbyvx"]
+
+[resource]
+script = ExtResource("1_vbyvx")
+item_id = 11
+name = "Acorn"
+description = "Place it on grass and it will turn into a Tree."
+graphicId = 11
+isUsable = false
+isConsumable = true
+isStackable = true
+health = 1
+isPlaceable = true
+placeableTile = 3
+canBePlacedOn = Array[int]([1])
+canShoot = false
+damage = 0
+resource_damage = 0
+max_armor = 0
+max_stamina = 0
+max_mana = 0
+onUse = null

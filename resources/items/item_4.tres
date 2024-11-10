@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://ctq8n422d6prj"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_w52mf"]
+
+[resource]
+script = ExtResource("1_w52mf")
+item_id = 4
+name = "Wooden Bow"
+description = "Needs arrows to shoot."
+graphicId = 4
+isUsable = true
+isConsumable = false
+isStackable = false
+health = 64
+isPlaceable = false
+placeableTile = 0
+canBePlacedOn = Array[int]([0])
+canShoot = true
+damage = 0
+resource_damage = 0
+max_armor = 0
+max_stamina = 0
+max_mana = 0
+onUse = null

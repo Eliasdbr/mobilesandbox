@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://oxvm004xjfem"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_khhrb"]
+
+[resource]
+script = ExtResource("1_khhrb")
+item_id = 1
+name = "Health Potion"
+description = "When used, continuously regenerates health until it reaches full health."
+graphicId = 1
+isUsable = true
+isConsumable = true
+isStackable = false
+health = 1
+isPlaceable = false
+placeableTile = 0
+canBePlacedOn = Array[int]([0])
+damage = 0
+resource_damage = 0
+max_armor = 0
+max_stamina = 0
+max_mana = 0
+onUse = null

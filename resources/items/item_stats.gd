@@ -19,7 +19,7 @@ extends Resource
 ## If the character can hold more than one of this item.
 @export var isStackable: bool = true
 ## Amount of uses this item can have before being destroyed. (Ignored if isConsumable or isStackable is true)
-@export_range(1,INF) var health: int = 1
+@export_range(1,1024) var health: int = 1
 
 ## When used, it allows the character to place a tile on the world.
 @export var isPlaceable: bool = false
@@ -27,6 +27,24 @@ extends Resource
 @export var placeableTile: int = 0
 ## A list of Tile IDs on which the character can place this placeable item
 @export var canBePlacedOn: Array[int] = [0]
+
+## If it can throw projectiles
+@export var canShoot: bool = false
+## If canShoot is true, the projectile resource it can shoot.
+## (To be defined)
+
+@export_category("Modifiers")
+## Damage caused when hitting another character
+@export var damage: int = 0
+## Damage dealt to a tile
+@export var resource_damage: int = 0
+## Max armor when held
+@export var max_armor: int = 0
+## Max stamina when held
+@export var max_stamina: int = 0
+## Max mana when held
+@export var max_mana: int = 0
+
 
 ## Function that executes when used.
 @export var onUse: Callable = func(char: Character): pass

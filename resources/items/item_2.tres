@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://bq3g11mlw5srj"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_iftlr"]
+
+[resource]
+script = ExtResource("1_iftlr")
+item_id = 2
+name = "Orb of Water"
+description = "It throws water-type projectiles. It consumes 1 Mana."
+graphicId = 2
+isUsable = true
+isConsumable = false
+isStackable = false
+health = 64
+isPlaceable = false
+placeableTile = 0
+canBePlacedOn = Array[int]([0])
+canShoot = true
+damage = 0
+resource_damage = 0
+max_armor = 0
+max_stamina = 0
+max_mana = 0
+onUse = null

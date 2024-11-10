@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://c5133ymyw1emv"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_lydi2"]
+
+[resource]
+script = ExtResource("1_lydi2")
+item_id = 5
+name = "Metal Pickaxe"
+description = "Effective against Rocks and Minerals.
+Effectiveness: +2"
+graphicId = 5
+isUsable = false
+isConsumable = false
+isStackable = false
+health = 64
+isPlaceable = false
+placeableTile = 0
+canBePlacedOn = Array[int]([0])
+canShoot = false
+damage = 0
+resource_damage = 2
+max_armor = 0
+max_stamina = 0
+max_mana = 0
+onUse = null
