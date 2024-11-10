@@ -209,11 +209,9 @@ func onPickUpDrop() -> void:
 			inventory_system.inventory_slots[4].item_id = dropped_item.item.item_id
 			inventory_system.inventory_slots[4].amount = dropped_item.amount
 			## updates the dropped item data with the copy's data
-			## TODO: Check if item_id is -1
+			## Check if item_id is -1
 			if mainItem.item_id > -1:
-				var itemStatPath = "res://resources/items/item_%d.tres" % mainItem.item_id
-				print("Item path: ", itemStatPath)
-				dropped_item.item = load(itemStatPath)
+				dropped_item.item = inventory_system.getResourceFromID(mainItem.item_id)
 				dropped_item.amount = mainItem.amount
 		else:
 			dropped_item.queue_free()

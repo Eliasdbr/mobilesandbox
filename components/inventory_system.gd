@@ -19,6 +19,16 @@ var inventory_slots: Array[InventorySlot] = []
 
 signal inventoryChanged(inventory: Array[InventorySlot])
 
+## Gets the ItemStats resource from an item_id
+func getResourceFromID(id: int) -> ItemStats:
+	if id < 0: return null
+	
+	var itemStatPath = "res://resources/items/item_%d.tres" % id
+	var item = load(itemStatPath)
+	
+	if item: return item
+	else: return null
+
 ## Swaps the current item the character is holding with the one 
 ## indicated on the parameter "index".
 ## If the main slot and the selected slot share the same item_id,
@@ -79,7 +89,7 @@ func drop(pos: Vector2i) -> InventorySlot:
 	
 	## Place an item in the world
 	var item_instance = dropped_item_scene.instantiate()
-	var item_res: ItemStats = load("res://resources/items/item_%d.tres" % item.item_id)
+	var item_res: ItemStats = getResourceFromID(item.item_id)
 	item_instance.item = item_res
 	item_instance.amount = item.amount
 	item_instance.spawn_pos = pos
