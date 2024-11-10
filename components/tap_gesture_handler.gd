@@ -2,9 +2,9 @@ class_name TapGestureHandler
 extends Node
 
 ## Time window to check for a second tap
-@export var double_press_time: float = 0.5
+@export var double_press_time: float = 0.25
 ## Time window for the tap to be considered long tap
-@export var long_press_time: float = 1.0
+@export var long_press_time: float = 0.5
 ## Limit distance (in pixels) in which it is considered a swipe and not a tap
 @export var swipe_distance_limit: float = 50.0
 
