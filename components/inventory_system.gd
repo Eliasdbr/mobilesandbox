@@ -39,8 +39,11 @@ func swapWithMainSlot(index: int) -> void:
 	
 	# If they both share the same ID, add the amount of the selected item to
 	# the main item (unless they are not stackable!!)
-	## TODO: Check for item stackability
-	if inventory_slots[4].item_id == inventory_slots[index].item_id:
+	# Also Check for item stackability
+	if (
+		inventory_slots[4].item_id == inventory_slots[index].item_id
+		and getResourceFromID(inventory_slots[4].item_id).isStackable
+	):
 		inventory_slots[4].amount += inventory_slots[index].amount
 		inventory_slots[index].item_id = -1
 		inventory_slots[index].amount = 0
@@ -60,22 +63,26 @@ func pickUp(item_id: int, amount: int) -> bool:
 	print("Picking up ", amount, " of Item ID:", item_id)
 	var canBeStored: bool = false
 	## First, search for slot with the same type of item
-	## TODO: Check for item stackability
+	## And Check for item stackability
 	for i in range(len(inventory_slots)):
-		if inventory_slots[i].item_id == item_id:
+		if (
+			inventory_slots[i].item_id == item_id
+			and getResourceFromID(inventory_slots[i].item_id).isStackable
+		):
 			inventory_slots[i].amount += amount
 			canBeStored = true
 	
 	## Then, search for an empty slot
-	for i in range(len(inventory_slots)):
-		if inventory_slots[i].item_id == -1:
-			inventory_slots[i].item_id = item_id
-			inventory_slots[i].amount = amount
-			canBeStored = true
-			break
+	if not canBeStored:
+		for i in range(len(inventory_slots)):
+			if inventory_slots[i].item_id == -1:
+				inventory_slots[i].item_id = item_id
+				inventory_slots[i].amount = amount
+				canBeStored = true
+				break
 	
-	# Emit signal that inventory changed
-	inventoryChanged.emit(inventory_slots)
+	## Emit signal that inventory changed
+	#inventoryChanged.emit(inventory_slots)
 	
 	## Finally, if everything fails, return false
 	print("Could be stored?: ", canBeStored)
@@ -93,6 +100,7 @@ func drop(pos: Vector2i) -> InventorySlot:
 	item_instance.item = item_res
 	item_instance.amount = item.amount
 	item_instance.spawn_pos = pos
+	item_instance.tilemap = world.get_node("Terrain")
 	world.add_child(item_instance)
 	
 	inventory_slots[4].item_id = -1

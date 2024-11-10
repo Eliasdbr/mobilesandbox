@@ -215,6 +215,8 @@ func onPickUpDrop() -> void:
 				dropped_item.amount = mainItem.amount
 		else:
 			dropped_item.queue_free()
+		## Emit signal that inventory changed
+		inventory_system.inventoryChanged.emit(inventory_system.inventory_slots)
 		
 	## if there isn't an item on the floor:
 	else:
