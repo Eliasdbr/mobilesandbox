@@ -37,7 +37,7 @@ func update_slot() -> void:
 		self_modulate = Color(1.0, 1.0, 1.0)
 	
 	# If there's no item, return
-	if graphic_id <= -1 and amount <= 0: return
+	if graphic_id <= -1 or amount <= 0: return
 	
 	# Updates sprite frame
 	sprite_2d.frame = graphic_id
