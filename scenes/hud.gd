@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export_range(1.0, 2.0) var ui_scale = 1.5
+@export_range(1.0, 4.0) var ui_scale = 1.5
 
 @onready var margin_container: MarginContainer = $MarginContainer
 
