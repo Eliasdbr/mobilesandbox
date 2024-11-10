@@ -38,3 +38,4 @@ shape = SubResource("RectangleShape2D_3jxbp")
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]
 [connection signal="doubleTap" from="TapGestureHandler" to="." method="onPickUpDrop"]
 [connection signal="longTap" from="TapGestureHandler" to="HUD" method="set_inv_visible"]
+[connection signal="selectedItem" from="HUD" to="." method="onItemSelected"]

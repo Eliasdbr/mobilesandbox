@@ -1,4 +1,4 @@
-extends Panel
+extends Button
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var amount_label: Label = $AmountLabel
@@ -17,6 +17,11 @@ extends Panel
 	set(s):
 		is_selected = s
 		update_slot()
+
+@export var slot_id: int = 0
+
+## Clicked this button and selected this item
+signal selectedSlot(slot_index: int)
 
 ## Updates all the graphics based on property changes
 func update_slot() -> void:
@@ -42,3 +47,6 @@ func update_slot() -> void:
 	
 func _ready() -> void:
 	update_slot()
+
+func _pressed() -> void:
+	selectedSlot.emit(slot_id)

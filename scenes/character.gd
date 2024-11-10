@@ -224,7 +224,6 @@ func onPickUpDrop() -> void:
 		## Attempt to drop the item in the main slot, if it has one
 		inventory_system.drop(tile_pos)
 
-### Detects an item on the floor
-#func _on_pickup_detector_area_entered(area: Area2D) -> void:
-	#var dropped_item = area.get_parent()
-	#print(dropped_item.item)
+## When an item from the inventory is selected
+func onItemSelected(slot_idx: int) -> void:
+	inventory_system.swapWithMainSlot(slot_idx)

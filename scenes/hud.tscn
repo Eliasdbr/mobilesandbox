@@ -60,25 +60,33 @@ layout_mode = 2
 
 [node name="InvSlot_1" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 1
 
 [node name="InvSlot_2" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 2
 
 [node name="InvSlot_3" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 3
 
 [node name="InvSlot_4" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
 is_selected = true
+slot_id = 4
 
 [node name="InvSlot_5" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 5
 
 [node name="InvSlot_6" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 6
 
 [node name="InvSlot_7" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 7
 
 [node name="InvSlot_8" parent="MarginContainer/InventoryContainer" instance=ExtResource("3_3pcsf")]
 layout_mode = 2
+slot_id = 8
