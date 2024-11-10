@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmmyoxswkt77d"]
+[gd_scene load_steps=7 format=3 uid="uid://dmmyoxswkt77d"]
 
 [ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="1_lkudo"]
 [ext_resource type="Script" path="res://components/swipe_movement.gd" id="2_limlt"]
 [ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="3_jufy2"]
 [ext_resource type="PackedScene" uid="uid://bud4avbtmrdan" path="res://scenes/hud.tscn" id="4_2h6y6"]
+[ext_resource type="Script" path="res://components/tap_gesture_handler.gd" id="4_3vtw1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jxbp"]
 size = Vector2(8, 8)
@@ -14,7 +15,10 @@ stats = ExtResource("3_jufy2")
 [node name="SwipeMovement" type="Node" parent="." index="3"]
 script = ExtResource("2_limlt")
 
-[node name="RenderNotifier" type="Area2D" parent="." index="4"]
+[node name="TapGestureHandler" type="Node" parent="." index="4"]
+script = ExtResource("4_3vtw1")
+
+[node name="RenderNotifier" type="Area2D" parent="." index="5"]
 position = Vector2(0, -5)
 collision_layer = 1073741824
 collision_mask = 2147483648
@@ -24,10 +28,11 @@ monitoring = false
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_3jxbp")
 
-[node name="HUD" parent="." index="7" instance=ExtResource("4_2h6y6")]
+[node name="HUD" parent="." index="8" instance=ExtResource("4_2h6y6")]
 
 [connection signal="armorChanged" from="." to="HUD" method="update_dp"]
 [connection signal="healthChanged" from="." to="HUD" method="update_hp"]
 [connection signal="manaChanged" from="." to="HUD" method="update_mp"]
 [connection signal="staminaChanged" from="." to="HUD" method="update_sp"]
+[connection signal="inventoryChanged" from="InventorySystem" to="HUD" method="update_inventory"]
 [connection signal="onSwipe" from="SwipeMovement" to="." method="_onAction"]
