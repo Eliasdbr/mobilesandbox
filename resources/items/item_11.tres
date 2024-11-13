@@ -7,6 +7,7 @@ script = ExtResource("1_vbyvx")
 item_id = 11
 name = "Acorn"
 description = "Place it on grass and it will turn into a Tree."
+isTileGraphic = false
 graphicId = 11
 isUsable = false
 isConsumable = true

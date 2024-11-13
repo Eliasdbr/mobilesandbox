@@ -8,7 +8,9 @@ extends Resource
 @export var name: String = ""
 ## Description for the item
 @export_multiline var description: String = ""
-## Tile ID for the graphic to use for the item (check the ItemSet graphic)
+## If true, uses the Tileset graphic instead of the ItemSet graphic
+@export var isTileGraphic: bool = false
+## Frame ID for the graphic to use for the item (check the ItemSet graphic)
 @export_range(0,255) var graphicId: int = 0
 
 @export_category("Stats")

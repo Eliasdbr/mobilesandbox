@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://c28fjggu43bjv"]
+
+[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_7hjwm"]
+
+[resource]
+script = ExtResource("1_7hjwm")
+item_id = 12
+name = "Dirt Block"
+description = "Can be placed over stone floor or water."
+isTileGraphic = true
+graphicId = 0
+isUsable = false
+isConsumable = true
+isStackable = true
+health = 1
+isPlaceable = true
+placeableTile = 0
+canBePlacedOn = Array[int]([7, 9])
+canShoot = false
+damage = 0
+resource_damage = 0
+max_armor = 0
+max_stamina = 0
+max_mana = 0
+onUse = null
