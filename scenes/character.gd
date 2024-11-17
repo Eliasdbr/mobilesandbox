@@ -244,7 +244,15 @@ func onPickUpDrop() -> void:
 		item_sprite.visible = false
 	else:
 		item_sprite.visible = true
-		item_sprite.frame = inventory_system.inventory_slots[4].item_id
+		var item_stats = inventory_system.getResourceFromID(
+			inventory_system.inventory_slots[4].item_id
+		)
+		if item_stats and item_stats.isTileGraphic:
+			item_sprite.texture = preload("res://graphics/Tileset.png")
+		else:
+			item_sprite.texture = preload("res://graphics/ItemSet.png")
+		item_sprite.frame = item_stats.graphicId
+		
 
 ## When an item from the inventory is selected
 func onItemSelected(slot_idx: int) -> void:
@@ -253,7 +261,14 @@ func onItemSelected(slot_idx: int) -> void:
 		item_sprite.visible = false
 	else:
 		item_sprite.visible = true
-		item_sprite.frame = inventory_system.inventory_slots[4].item_id
+		var item_stats = inventory_system.getResourceFromID(
+			inventory_system.inventory_slots[4].item_id
+		)
+		if item_stats and item_stats.isTileGraphic:
+			item_sprite.texture = preload("res://graphics/Tileset.png")
+		else:
+			item_sprite.texture = preload("res://graphics/ItemSet.png")
+		item_sprite.frame = item_stats.graphicId
 
 ## When the inventory is open
 func onInventoryOpen(isOpen: bool) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2i4fcsbux6jy"]
+[gd_scene load_steps=15 format=3 uid="uid://c2i4fcsbux6jy"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_gmtj2"]
 [ext_resource type="Script" path="res://components/terrain_generator.gd" id="2_ue5xl"]
@@ -11,15 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cm8ev6iut28as" path="res://scenes/zombie.tscn" id="11_ebch6"]
 [ext_resource type="Resource" uid="uid://d3f7dfmo7mtj0" path="res://resources/items/item_11.tres" id="11_o8884"]
 [ext_resource type="Resource" uid="uid://du5wc2631ctto" path="res://resources/items/item_10.tres" id="12_1jh2r"]
-[ext_resource type="Resource" uid="uid://c5133ymyw1emv" path="res://resources/items/item_5.tres" id="12_dahcn"]
 [ext_resource type="Resource" uid="uid://ctujnf50jinb2" path="res://resources/characters/zombie_stats.tres" id="12_k56y3"]
-[ext_resource type="Resource" uid="uid://c3av2pdbfodjj" path="res://resources/items/item_0.tres" id="14_6gitv"]
-[ext_resource type="Resource" uid="uid://oxvm004xjfem" path="res://resources/items/item_1.tres" id="15_5gpsp"]
-[ext_resource type="Resource" uid="uid://bq3g11mlw5srj" path="res://resources/items/item_2.tres" id="16_pnv2u"]
-[ext_resource type="Resource" uid="uid://6tqdgvqibrsr" path="res://resources/items/item_3.tres" id="17_8apt2"]
-[ext_resource type="Resource" uid="uid://ctq8n422d6prj" path="res://resources/items/item_4.tres" id="18_jlp6l"]
-[ext_resource type="Resource" uid="uid://c1skr2u5ivhtg" path="res://resources/items/item_6.tres" id="19_3mlew"]
-[ext_resource type="Resource" uid="uid://bnf41w80m4ul7" path="res://resources/items/item_7.tres" id="20_atrkl"]
+[ext_resource type="Resource" uid="uid://c28fjggu43bjv" path="res://resources/items/item_12.tres" id="13_6mi3q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ius4"]
 size = Vector2(256, 256)
@@ -87,79 +80,7 @@ spawn_pos = Vector2i(0, 2)
 z_as_relative = false
 y_sort_enabled = true
 tilemap = NodePath("../Terrain")
-item = ExtResource("12_dahcn")
+item = ExtResource("13_6mi3q")
 spawn_pos = Vector2i(0, 3)
-
-[node name="ItemDropped4" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("11_o8884")
-amount = 5
-spawn_pos = Vector2i(1, 1)
-
-[node name="ItemDropped5" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("14_6gitv")
-spawn_pos = Vector2i(1, 2)
-
-[node name="ItemDropped6" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("15_5gpsp")
-spawn_pos = Vector2i(1, 3)
-
-[node name="ItemDropped7" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("16_pnv2u")
-spawn_pos = Vector2i(2, 1)
-
-[node name="ItemDropped8" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("17_8apt2")
-spawn_pos = Vector2i(2, 2)
-
-[node name="ItemDropped9" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("18_jlp6l")
-spawn_pos = Vector2i(2, 3)
-
-[node name="ItemDropped10" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("19_3mlew")
-spawn_pos = Vector2i(3, 1)
-
-[node name="ItemDropped11" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("12_1jh2r")
-amount = 5
-spawn_pos = Vector2i(3, 2)
-
-[node name="ItemDropped12" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("20_atrkl")
-spawn_pos = Vector2i(3, 3)
-
-[node name="ItemDropped13" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("10_dlvht")]
-z_as_relative = false
-y_sort_enabled = true
-tilemap = NodePath("../Terrain")
-item = ExtResource("15_5gpsp")
-spawn_pos = Vector2i(4, 1)
 
 [connection signal="area_exited" from="RenderBoundary" to="." method="_onRenderBoundaryExit"]

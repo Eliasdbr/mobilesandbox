@@ -52,7 +52,7 @@ func update_mp(value: int):
 
 func update_inventory(inventory: Array[InventorySystem.InventorySlot]):
 	if inv_slots[0]:
-		print("updated inventory")
+		print("updated inventory: ", inv_slots)
 		for i in range(len(inv_slots)):
 			inv_slots[i].graphic_id = inventory[i].item_id
 			inv_slots[i].amount = inventory[i].amount
