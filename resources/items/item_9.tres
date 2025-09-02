@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://csn4q8v3ea8yk"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_ffsqv"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_ffsqv"]
 
 [resource]
 script = ExtResource("1_ffsqv")
 item_id = 9
 name = "Orb of Wind"
 description = "It throws air-type projectiles. It consumes 1 Mana."
+isTileGraphic = false
 graphicId = 9
 isUsable = true
 isConsumable = false

@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://bnf41w80m4ul7"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_iayx2"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_iayx2"]
 
 [resource]
 script = ExtResource("1_iayx2")
 item_id = 7
 name = "Orb of Earth"
 description = "It throws earth-type projectiles. It consumes 1 Mana."
+isTileGraphic = false
 graphicId = 7
 isUsable = true
 isConsumable = false

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://c5133ymyw1emv"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_lydi2"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_lydi2"]
 
 [resource]
 script = ExtResource("1_lydi2")
@@ -8,6 +8,7 @@ item_id = 5
 name = "Metal Pickaxe"
 description = "Effective against Rocks and Minerals.
 Effectiveness: +2"
+isTileGraphic = false
 graphicId = 5
 isUsable = false
 isConsumable = false

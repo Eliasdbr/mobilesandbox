@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://bcwkjjp2aq10d"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_2tnvj"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_2tnvj"]
 
 [resource]
 script = ExtResource("1_2tnvj")
 item_id = 8
 name = "Orb of Fire"
 description = "It throws fire-type projectiles. It consumes 1 Mana."
+isTileGraphic = false
 graphicId = 8
 isUsable = true
 isConsumable = false

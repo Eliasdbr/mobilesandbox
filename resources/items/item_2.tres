@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://bq3g11mlw5srj"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_iftlr"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_iftlr"]
 
 [resource]
 script = ExtResource("1_iftlr")
 item_id = 2
 name = "Orb of Water"
 description = "It throws water-type projectiles. It consumes 1 Mana."
+isTileGraphic = false
 graphicId = 2
 isUsable = true
 isConsumable = false

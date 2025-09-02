@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cb7qdb6h3tkws"]
 
-[ext_resource type="Script" path="res://scenes/stat_bar.gd" id="1_owe6k"]
+[ext_resource type="Script" uid="uid://c3f5715awsbqc" path="res://scenes/stat_bar.gd" id="1_owe6k"]
 
 [sub_resource type="Animation" id="Animation_x57pm"]
 resource_name = "FadeIn"
@@ -28,33 +28,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
-}
-
-[sub_resource type="Animation" id="Animation_o0kwa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_nkxjo"]
@@ -85,11 +58,38 @@ tracks/1/keys = {
 "values": [true, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_o0kwa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qp4m3"]
 _data = {
-"FadeIn": SubResource("Animation_x57pm"),
-"FadeOut": SubResource("Animation_nkxjo"),
-"RESET": SubResource("Animation_o0kwa")
+&"FadeIn": SubResource("Animation_x57pm"),
+&"FadeOut": SubResource("Animation_nkxjo"),
+&"RESET": SubResource("Animation_o0kwa")
 }
 
 [node name="StatBar" type="HFlowContainer"]

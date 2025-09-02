@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://c3av2pdbfodjj"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_2mpct"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_2mpct"]
 
 [resource]
 script = ExtResource("1_2mpct")
 item_id = 0
 name = "Metal Sword"
 description = "Damage: +2"
+isTileGraphic = false
 graphicId = 0
 isUsable = false
 isConsumable = false
@@ -15,6 +16,7 @@ health = 64
 isPlaceable = false
 placeableTile = 0
 canBePlacedOn = Array[int]([0])
+canShoot = false
 damage = 2
 resource_damage = 0
 max_armor = 0

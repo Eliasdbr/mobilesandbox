@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqj44733oeou0"]
 
-[ext_resource type="Script" path="res://scenes/stat_icon.gd" id="2_10ddo"]
+[ext_resource type="Script" uid="uid://bu752d45f0c4k" path="res://scenes/stat_icon.gd" id="2_10ddo"]
 
 [node name="StatIcon" type="TextureRect"]
 texture_filter = 1

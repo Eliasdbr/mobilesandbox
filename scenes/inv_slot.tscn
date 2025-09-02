@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://divihjymli6de"]
 
-[ext_resource type="Script" path="res://scenes/inv_slot.gd" id="1_cyqta"]
+[ext_resource type="Script" uid="uid://ces0ke0d5eyc6" path="res://scenes/inv_slot.gd" id="1_cyqta"]
 [ext_resource type="Texture2D" uid="uid://l7vdorsgt2n2" path="res://graphics/ItemSet.png" id="1_kj2e7"]
 
 [node name="InvSlot_0" type="Button"]

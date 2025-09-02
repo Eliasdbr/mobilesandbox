@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://c1skr2u5ivhtg"]
 
-[ext_resource type="Script" path="res://resources/items/item_stats.gd" id="1_t4tdi"]
+[ext_resource type="Script" uid="uid://drpamdluokrcb" path="res://resources/items/item_stats.gd" id="1_t4tdi"]
 
 [resource]
 script = ExtResource("1_t4tdi")
@@ -8,6 +8,7 @@ item_id = 6
 name = "Metal Axe"
 description = "Effective against Trees and Wood.
 Effectivenes: +2"
+isTileGraphic = false
 graphicId = 6
 isUsable = false
 isConsumable = false

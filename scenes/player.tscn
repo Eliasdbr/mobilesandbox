@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmmyoxswkt77d"]
 
 [ext_resource type="PackedScene" uid="uid://b4xrfoj2eamff" path="res://scenes/character.tscn" id="1_lkudo"]
-[ext_resource type="Script" path="res://components/swipe_movement.gd" id="2_limlt"]
+[ext_resource type="Script" uid="uid://budd3c8774yjg" path="res://components/swipe_movement.gd" id="2_limlt"]
 [ext_resource type="Resource" uid="uid://di86qo6u0q0tx" path="res://resources/characters/player_stats.tres" id="3_jufy2"]
 [ext_resource type="PackedScene" uid="uid://bud4avbtmrdan" path="res://scenes/hud.tscn" id="4_2h6y6"]
-[ext_resource type="Script" path="res://components/tap_gesture_handler.gd" id="4_3vtw1"]
+[ext_resource type="Script" uid="uid://chs34klegnxft" path="res://components/tap_gesture_handler.gd" id="4_3vtw1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jxbp"]
 size = Vector2(8, 8)

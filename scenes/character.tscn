@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://b4xrfoj2eamff"]
 
-[ext_resource type="Script" path="res://scenes/character.gd" id="1_2vm8d"]
+[ext_resource type="Script" uid="uid://d3hct0gdim7on" path="res://scenes/character.gd" id="1_2vm8d"]
 [ext_resource type="Texture2D" uid="uid://e3opu1kwb5nn" path="res://graphics/BlcharSprite.png" id="2_qc1ek"]
-[ext_resource type="Script" path="res://components/tile_collision_checker.gd" id="4_4xil6"]
-[ext_resource type="Script" path="res://components/character_collision_checker.gd" id="4_e5421"]
-[ext_resource type="Script" path="res://components/inventory_system.gd" id="5_8kr56"]
+[ext_resource type="Script" uid="uid://dblocufwxkoed" path="res://components/tile_collision_checker.gd" id="4_4xil6"]
+[ext_resource type="Script" uid="uid://bt4yesu68s3yu" path="res://components/character_collision_checker.gd" id="4_e5421"]
+[ext_resource type="Script" uid="uid://bfhp0uie6fqt0" path="res://components/inventory_system.gd" id="5_8kr56"]
 [ext_resource type="Texture2D" uid="uid://l7vdorsgt2n2" path="res://graphics/ItemSet.png" id="6_6k2sb"]
 
 [sub_resource type="Animation" id="Animation_n2tes"]
@@ -140,9 +140,9 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vd5sa"]
 _data = {
-"Hop": SubResource("Animation_n2tes"),
-"Hurt": SubResource("Animation_027np"),
-"RESET": SubResource("Animation_x1v0s")
+&"Hop": SubResource("Animation_n2tes"),
+&"Hurt": SubResource("Animation_027np"),
+&"RESET": SubResource("Animation_x1v0s")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6ut4"]
