@@ -2,6 +2,8 @@ class_name SwipeMovement
 extends Node
 
 @export var targetLength = 100.0
+@export var cooldown: Timer
+
 
 var startPos: Vector2
 var currPos: Vector2
@@ -18,7 +20,7 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_pressed("click") and isSwiping:
 		currPos = get_viewport().get_mouse_position()
-		if startPos.distance_to(currPos) >= targetLength:
+		if startPos.distance_to(currPos) >= targetLength and cooldown.time_left == 0.0:
 			var swipeVector = currPos - startPos
 			# print("Swipe detected")
 			# Horizontal Swipe
@@ -37,8 +39,15 @@ func _process(_delta: float) -> void:
 				else:
 					# print("Swipe UP")
 					onSwipe.emit(Vector2.UP)
-			isSwiping = false
+			
+			if !cooldown or cooldown.wait_time == 0.0:
+				isSwiping = false
+			else:
+				cooldown.start()
 	else:
+		isSwiping = false
+	
+	if Input.is_action_just_released("click") and isSwiping:
 		isSwiping = false
 
 func _input(event: InputEvent) -> void:

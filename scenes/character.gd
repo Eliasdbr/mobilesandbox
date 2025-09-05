@@ -198,7 +198,7 @@ func _onAction(direction: Vector2) -> void:
 		position = tilemap.map_to_local(tile_pos)
 		sprite_anchor.global_position = moveFrom
 		# Moving costs 1 stamina
-		useEnergy(1)
+		# useEnergy(1) # commented due to being a bit annoying
 	# sprite_anchor.position = Vector2(moveFrom + moveTo) / 2
 	anim_ch1.play("Hop")
 	

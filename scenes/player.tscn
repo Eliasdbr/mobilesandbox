@@ -12,13 +12,19 @@ size = Vector2(8, 8)
 [node name="Player" instance=ExtResource("1_lkudo")]
 stats = ExtResource("3_jufy2")
 
-[node name="SwipeMovement" type="Node" parent="." index="3"]
+[node name="SwipeMovement" type="Node" parent="." index="3" node_paths=PackedStringArray("cooldown")]
 script = ExtResource("2_limlt")
+cooldown = NodePath("../MovementCooldown")
 
-[node name="TapGestureHandler" type="Node" parent="." index="4"]
+[node name="MovementCooldown" type="Timer" parent="." index="4"]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[node name="TapGestureHandler" type="Node" parent="." index="5"]
 script = ExtResource("4_3vtw1")
 
-[node name="RenderNotifier" type="Area2D" parent="." index="5"]
+[node name="RenderNotifier" type="Area2D" parent="." index="6"]
 position = Vector2(0, -5)
 collision_layer = 1073741824
 collision_mask = 2147483648
@@ -28,7 +34,7 @@ monitoring = false
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_3jxbp")
 
-[node name="HUD" parent="." index="8" instance=ExtResource("4_2h6y6")]
+[node name="HUD" parent="." index="9" instance=ExtResource("4_2h6y6")]
 
 [connection signal="armorChanged" from="." to="HUD" method="update_dp"]
 [connection signal="healthChanged" from="." to="HUD" method="update_hp"]
